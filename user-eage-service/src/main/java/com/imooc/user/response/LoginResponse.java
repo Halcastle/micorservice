@@ -8,7 +8,18 @@ package com.imooc.user.response;
  * @Version 1.0
  **/
 public class LoginResponse extends Response {
-    public LoginResponse(String code, String message) {
-        super(code, message);
+
+    private String token;
+
+    public LoginResponse(String token){
+        this.token = token;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

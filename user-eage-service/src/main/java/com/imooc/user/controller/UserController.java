@@ -3,8 +3,10 @@ package com.imooc.user.controller;
 import com.imooc.thrift.user.UserInfo;
 import com.imooc.user.dto.UserDTO;
 import com.imooc.user.redis.RedisClient;
+import com.imooc.user.response.LoginResponse;
 import com.imooc.user.response.Response;
 import com.imooc.user.thrift.ServiceProvider;
+import org.apache.commons.lang.StringUtils;
 import org.apache.thrift.TException;
 import org.apache.tomcat.util.buf.HexUtils;
 import org.springframework.beans.BeanUtils;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -35,6 +38,7 @@ public class UserController {
     private RedisClient redisClient;
 
     @RequestMapping(value = "/login",method = RequestMethod.POST)
+    @ResponseBody
     public Response login(@RequestParam("username") String username,
                       @RequestParam("password") String password){
 
@@ -57,11 +61,40 @@ public class UserController {
         String token = genToken();
         //3.缓存用户
         redisClient.set(token,toDTO(userInfo),3600);
+        return new LoginResponse(token);
+    }
+
+    public Response sendVerifyCode(@RequestParam(value = "mobile",required = false) String mobile,
+                                   @RequestParam(value = "email",required = false) String email){
+        if(StringUtils.isNotBlank(mobile)){
+
+        }else if(StringUtils.isNotBlank(email)){
+
+        }else{
+            return Response.MOBILE_OR_EMAIL_REQUIRED;
+        }
+    }
+
+    public Response register(@RequestParam("username") String username,
+                             @RequestParam("password") String password,
+                             @RequestParam(value="mobile",required = false) String mobile,
+                             @RequestParam(value="email",required = false) String email,
+                             @RequestParam(value="verifyCode",required = false) String verifyCode){
+        if(StringUtils.isBlank(mobile)&&StringUtils.isBlank(email)){
+            return Response.MOBILE_OR_EMAIL_REQUIRED;
+        }
+
+        if(StringUtils.isNotBlank(mobile)){
+
+        }else{
+
+        }
+
     }
 
     private UserDTO toDTO(UserInfo userInfo) {
         UserDTO userDTO = new UserDTO();
-        BeanUtils.copyProperties(userDTO,userInfo);
+        BeanUtils.copyProperties(userInfo,userDTO);
         return userDTO;
     }
 
