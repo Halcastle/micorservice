@@ -7,4 +7,4 @@ CREATE TABLE `pe_user` (
   `mobile` varchar(32)  COMMENT '手机号',
   `email` varchar(32)  COMMENT '邮箱',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8 COMMENT='用户表';
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='用户表';
