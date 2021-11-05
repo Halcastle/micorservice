@@ -26,6 +26,7 @@ import java.util.Random;
  * @Version 1.0
  **/
 @Controller
+@RequestMapping("/user")
 public class UserController {
 
     @Autowired
@@ -33,6 +34,11 @@ public class UserController {
 
     @Autowired
     private RedisClient redisClient;
+
+    @RequestMapping(value = "/login",method = RequestMethod.GET)
+    public String login(){
+        return "/login";
+    }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
@@ -124,6 +130,12 @@ public class UserController {
         }
         return Response.SUCCESS;
 
+    }
+
+    @RequestMapping(value = "/authentication",method = RequestMethod.POST)
+    @ResponseBody
+    public UserDTO authentication(@RequestHeader("token") String token){
+        return redisClient.get(token);
     }
 
     private UserDTO toDTO(UserInfo userInfo) {
