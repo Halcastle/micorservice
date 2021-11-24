@@ -15,6 +15,10 @@
         <module>user-thrift-service</module>
         <module>user-eage-service</module>
         <module>user-eage-service-client</module>
+        <module>course-dubbo-service-api</module>
+        <module>course-dubbo-service</module>
+        <module>course-dubbo-service</module>
+        <module>course-edge-service</module>
     </modules>
 
 
