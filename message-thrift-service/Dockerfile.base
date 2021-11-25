@@ -1,0 +1,2 @@
+FROM openjdk:8u312-oraclelinux7
+MAINTAINER 王攀 wangpan961023@foxmail.com
