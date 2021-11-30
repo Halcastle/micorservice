@@ -1,0 +1,1 @@
+mvn package && docker build -t 101.201.152.218/micro-service/api-gateway-zuul:latest . && docker push 101.201.152.218/micro-service/api-gateway-zuul:latest

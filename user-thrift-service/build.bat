@@ -1,2 +1,1 @@
-mvn package
-docker build -t user-service:latest .
+mvn package && docker build -t 101.201.152.218/micro-service/user-service:latest . && docker push 101.201.152.218/micro-service/user-service:latest

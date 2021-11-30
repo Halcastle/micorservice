@@ -79,7 +79,7 @@ public abstract class LoginFilter implements Filter {
 
 
     private com.imooc.user.dto.UserDTO requestUserInfo(String token) {
-        String url = "http://127.0.0.1:8082/user/authentication";
+        String url = "http://user-edge-service:8082/user/authentication";
         HttpClient client = new DefaultHttpClient();
         HttpPost httpPost = new HttpPost(url);
         httpPost.addHeader("token",token);

@@ -1,0 +1,1 @@
+mvn clean && mvn package && docker build -t 101.201.152.218/micro-service/message-service:latest . && docker push 101.201.152.218/micro-service/message-service:latest
